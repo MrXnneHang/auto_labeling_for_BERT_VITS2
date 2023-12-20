@@ -17,3 +17,9 @@ Model需要自己下,我这里打算放到网盘.<br>
 待处理的文件需要放在./raw_audio/下<br>
 处理完的所有生成文件会放在./tmp下.
 包括.带time_series的字幕txt.合成短句的processed.txt,和去空白后的processed.wav
+
+
+
+## 如何安装环境:
+
+本身就是funasr的环境适配见：https://alibaba-damo-academy.github.io/FunASR/en/installation/installation.html
