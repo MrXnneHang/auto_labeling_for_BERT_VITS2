@@ -6,7 +6,7 @@ from tqdm import tqdm
 def clip_wav(wav_name):
     # 读取文本文件并解析时间戳
     timestamps = []
-    with open('08.txt', 'r', encoding='utf-8') as file:
+    with open('./tmp/08.txt', 'r', encoding='utf-8') as file:
         for line in file:
             match = re.match(r'(\d+)\|(\d+)\|', line)
             if match:

@@ -5,7 +5,7 @@ def convert_short_txt_to_long(wav_name):
     latest_end = 0
     latest_content = ""
     new_lines = []
-    with open(f'{wav_name}.txt', 'r', encoding='utf-8') as file:
+    with open(f'./tmp/{wav_name}.txt', 'r', encoding='utf-8') as file:
         for line in file:
             start_and_end = line.split("|")[:2]
             content = line.split("|")[2]
@@ -19,4 +19,4 @@ def convert_short_txt_to_long(wav_name):
             latest_start=start_and_end[0]
             latest_end=start_and_end[1]
 
-    write_lines_to_file(f".tmp/processed_{wav_name}.txt",new_lines)
+    write_lines_to_file(f"./tmp/processed_{wav_name}.txt",new_lines)
