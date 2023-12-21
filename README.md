@@ -36,6 +36,6 @@ Step 2. Whisper WebUI来获取*.txt,不需要Time_stamp<br>
 step 3. 合成txts成esd.list,txt中可能有几行，这里会把它们合并到同一行，然后在进行写入.<br>
 Step 4. 手动清理一下Whisper 错误生成的文本（不正常显示，重复).这里也可以选择清洗掉过短文本.<br>
 Step 5. 已经可以用了<br>
-## 场景二的py待写
+## 场景二需要使用WhisperWebUI
 
 你可以在b站上联系我：https://space.bilibili.com/556737824?spm_id_from=333.788.0.0
