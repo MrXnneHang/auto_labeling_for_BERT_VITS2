@@ -6,7 +6,7 @@ from tqdm import tqdm
 def clip_wav(wav_name):
     # 读取文本文件并解析时间戳
     timestamps = []
-    with open(f'./tmp/processed_{wav_name}.txt', 'r', encoding='utf-8') as file:
+    with open(f'./tmp/{wav_name}.txt', 'r', encoding='utf-8') as file:
         for line in file:
             match = re.match(r'(\d+)\|(\d+)\|', line)
             if match:
@@ -22,7 +22,7 @@ def clip_wav(wav_name):
     for start, end in tqdm(timestamps, desc="处理进度"):
 
         processed_audio += AudioSegment.silent(duration=500)
-        segment = audio[start-50:end+150]
+        segment = audio[start-150:end+150] # 淡入和淡出150ms
         processed_audio += AudioSegment.silent(duration=500)  # 添加0.5秒空白
         processed_audio += segment
         last_end = end

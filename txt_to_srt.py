@@ -29,14 +29,6 @@ def convert_to_srt(file_path):
                 srt_format += f"{index}\n{start_time} --> {end_time}\n{text}\n\n"
     return srt_format
 
-# 假设的文件路径
-input_file_path = "./07.txt"
-output_file_path = "./07.srt"
-
-# 转换并写入新文件
-srt_content = convert_to_srt(input_file_path)
-with open(output_file_path, 'w', encoding='utf-8') as file:
-    file.write(srt_content)
 
 # 输出一条消息表明处理过程已完成
 "处理完成，SRT文件已生成。"
