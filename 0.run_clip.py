@@ -4,6 +4,11 @@ from clip import clip_wav ## 根据新的时间线来切割我们的wav，去掉
 import os
 from tqdm import tqdm
 
+"""
+输入例:./tmp/08.wav
+输出例:08.txt,processed_08.txt,08.wav->processed_08.wav
+"""
+
 wav_name = "08"
 def main(wav_name):
     print("开始语音识别")
