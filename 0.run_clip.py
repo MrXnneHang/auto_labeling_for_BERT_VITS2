@@ -4,9 +4,13 @@ from clip import clip_wav ## 根据新的时间线来切割我们的wav，去掉
 import os
 from tqdm import tqdm
 
-"""
-输入例:./tmp/08.wav
-输出例:08.txt,processed_08.txt,08.wav->processed_08.wav
+
+"""这个最终做的是什么,
+   1.生成语音字幕和time_stamp,写入第一个txt
+   2.根据*.txt合并被拆分的短句-> processed*.txt
+   3.根据processed*.txt 忽略少于一定长度的句子 -> final*.txt
+   4.根据final*.txt的time_stamp剪辑*.wav
+
 """
 
 wav_name = "08"
