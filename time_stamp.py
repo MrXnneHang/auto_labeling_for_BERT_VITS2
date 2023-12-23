@@ -2,7 +2,7 @@ from modelscope.pipelines import pipeline
 from modelscope.utils.constant import Tasks
 
 
-def write_long_txt(wav_name,deletshort,skip_line):
+def write_long_txt(wav_name,cut_line):
     inference_pipeline = pipeline(
         task=Tasks.auto_speech_recognition,
         model='./model/speech_paraformer-large-vad-punc_asr_nat-zh-cn-16k-common-vocab8404-pytorch',
@@ -13,12 +13,7 @@ def write_long_txt(wav_name,deletshort,skip_line):
     sentences = rec_result["sentences"]
     lines = []
     for i in sentences:
-        if deletshort==True:
-            if i["ts_list"][-1][-1]-i["ts_list"][0][0]<skip_line: #跳过不记录这些短文本
-                continue
-            else:
                 skip = False
-                ## 还需要检测，就是句中停顿超级长.那些实际上可以分成两句
                 start_time_list = []
                 end_time_list = []
                 ## start - end too long 
@@ -28,7 +23,7 @@ def write_long_txt(wav_name,deletshort,skip_line):
                     end_time_list.append(j[1])
                 ## 判断是否删除 n+1的start -  n的end > 2000ms
                 for index in range(len(start_time_list)-1): #这两个应该等长
-                    if start_time_list[index+1]-end_time_list[index]>2000: ## 发现断点
+                    if start_time_list[index+1]-end_time_list[index]>cut_line: ## 发现断点
                         ## 后期可以切分成两句
                         ## 现在直接忽略
                         print("skip it ,it's not a warning.It's normal.")
