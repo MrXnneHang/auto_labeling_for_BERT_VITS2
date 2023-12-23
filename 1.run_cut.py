@@ -6,7 +6,7 @@ from tqdm import tqdm
 from cut import cut_wav
 from ignore_short_sentences import ignore_short_sentence
 
-wav_name = "08"
+
 def main(wav_name):
     print("开始语音识别")
     write_long_txt(wav_name=wav_name,cut_line=2000) ##对于不小心被识别到同一句中的我也只能说抱歉，只能skip

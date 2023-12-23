@@ -2,7 +2,7 @@ from time_stamp import write_lines_to_file
 
 def ignore_short_sentence(wav_name,audio_length):
     new_lines = []
-    with open(f'./tmp/{wav_name}.txt', 'r', encoding='utf-8') as file:
+    with open(f'./tmp/processed_{wav_name}.txt', 'r', encoding='utf-8') as file:
         for line in file:
             start_and_end = line.split("|")[:2]
             content = line.split("|")[2]
