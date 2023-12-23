@@ -11,24 +11,25 @@
 虽然我写得比她多 <br>
 ### 注意:
 
-最终处理出来一条一条完整的句子后可以再利用带符号的标注来写esd.list<br>
-处理完的所有生成文件会放在./tmp下.<br>
-Model需要自己下,我这里打算放到网盘.<br>
+w处理完的所有生成文件会放在./tmp下.<br>
 待处理的文件需要放在./raw_audio/下<br>
 
 ## 如何安装环境:
 
-本身就是funasr的环境适配见：https://alibaba-damo-academy.github.io/FunASR/en/installation/installation.html
----
+#### 本身就是funasr的环境适配见：https://alibaba-damo-academy.github.io/FunASR/en/installation/installation.html
 ## 项目的说明:
 适用场景一：给游戏主播录屏(单人音频，大量空白)制作BERT-VITS制作数据集<br>
 适用场景二: 给已经切片好的galgame character wavs 制作BERT-VITS数据集<br>
 
+## 用法:
+
 场景一：<br>
-Step 1. Run_clip.py 会按照Funasr的Time_stamp逐句squeeze掉没有说话的音频 <br>
-step 2. 用MDX算法给process后变短的wav降噪,请参考领航员未鸟的一键包。
-Step 3. Run_cut.py  ./raw_audio/降噪后的wavs -> ./tmp/cut/*.wav，根据字幕切割后的音频,每个音频是一个完整断句(长句一般由逗号隔开有多个部分，而这里把这些部分separated,稍微修改也可以选择按照长句分割)<br>
-Step 4. 用未鸟的auto_labeling来给短音频写esd.list<br>
+Step 1. Run_clip.py 会按照Funasr的Time_stamp逐句squeeze掉没有说话的音频,而且也会删除音频过短的部分，默认2500ms,可以自行调整 <br>
+step 2. 用MDX算法给process后变短的wav降噪,请参考b站领航员未鸟的一键包。|你也可以选择降噪后再进行这个处理，但是通常先删除无音频部分可以让降噪处理时间缩减到原本的四分之一。
+Step 3. Run_cut.py  ./raw_audio/降噪后的wavs -> ./tmp/cut/*.wav，根据字幕切割后的音频,每个音频是一个完整长句.<br>
+Step 4. Run 10.带标点符号的标注 + 12.清理标注 <br>
+
+用未鸟的auto_labeling来给短音频写esd.list<br>
 
 场景二:<br>
 Step 1. 初步清洗，删除过短的音频<br>
@@ -36,6 +37,7 @@ Step 2. Whisper WebUI来获取*.txt,不需要Time_stamp<br>
 step 3. 合成txts成esd.list,txt中可能有几行，这里会把它们合并到同一行，然后在进行写入.<br>
 Step 4. 手动清理一下Whisper 错误生成的文本（不正常显示，重复).这里也可以选择清洗掉过短文本.<br>
 Step 5. 已经可以用了<br>
+
 ## 场景二需要使用WhisperWebUI
 
 你可以在b站上联系我：https://space.bilibili.com/556737824?spm_id_from=333.788.0.0
