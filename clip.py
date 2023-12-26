@@ -22,7 +22,7 @@ def clip_wav(wav_name):
     for start, end in tqdm(timestamps, desc="处理进度"):
 
         processed_audio += AudioSegment.silent(duration=500)
-        segment = audio[start-50:end+150] # 淡入和淡出150ms
+        segment = audio[start:end]
         processed_audio += AudioSegment.silent(duration=1500)  # 添加1.5秒空白
         processed_audio += segment
         last_end = end

@@ -16,7 +16,7 @@ def cut_wav(lines, wav_filename):
         end_ms = int(parts[1])    # 结束时间，转换为毫秒
 
         # 剪辑音频片段
-        cut = audio[start_ms-50:end_ms+150]
+        cut = audio[start_ms:end_ms]
 
         # 保存剪辑后的音频
         output_filename = f"{output_dir}/{os.path.basename(wav_filename).split('.')[0]}_{i+1}.wav"

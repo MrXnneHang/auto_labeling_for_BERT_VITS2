@@ -1,5 +1,6 @@
 from modelscope.pipelines import pipeline
 from modelscope.utils.constant import Tasks
+from sentences_method import generate_new_sentences
 
 
 def write_long_txt(wav_name,cut_line):
@@ -11,6 +12,8 @@ def write_long_txt(wav_name,cut_line):
     rec_result = inference_pipeline(audio_in=f'./raw_audio/{wav_name}.wav')
     print(rec_result["sentences"])
     sentences = rec_result["sentences"]
+    ## 判断是否删除 n+1的start -  n的end > cutline
+    sentences = generate_new_sentences(sentences=sentences,cutline=cut_line)  ##这个会把一个句子中两句话分开，如果两句话的间隔超过cutline ,default =1000ms
     lines = []
     for i in sentences:
                 skip = False
@@ -21,15 +24,7 @@ def write_long_txt(wav_name,cut_line):
                     ## 遍历start_end的元组
                     start_time_list.append(j[0])
                     end_time_list.append(j[1])
-                ## 判断是否删除 n+1的start -  n的end > 2000ms
                 for index in range(len(start_time_list)-1): #这两个应该等长
-                    if start_time_list[index+1]-end_time_list[index]>cut_line: ## 发现断点
-                        ## 后期可以切分成两句
-                        ## 现在直接忽略
-                        print("skip it ,it's not a warning.It's normal.")
-                        skip = True
-
-                if skip == False:
                     lines.append(str(i["ts_list"][0][0])+"|"+str(i["ts_list"][-1][-1])+"|"+i["text"])
                     print(str(i["ts_list"][0][0])+"|"+str(i["ts_list"][-1][-1])+"|"+i["text"])
                 else:
