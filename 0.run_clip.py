@@ -19,7 +19,7 @@ def main(wav_name):
     如果设置deleshort=True,会自动跳过这些短音频，skip_line是跳过的阈值，单位ms
     """
     print("开始语音识别")
-    write_long_txt(wav_name=wav_name,cut_line=2000)
+    write_long_txt(wav_name=wav_name,cut_line=1000)
     print("开始处理识别后的语句")
     convert_short_txt_to_long(wav_name=wav_name)
     print("忽略短句")

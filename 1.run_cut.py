@@ -9,7 +9,7 @@ from ignore_short_sentences import ignore_short_sentence
 
 def main(wav_name):
     print("开始语音识别")
-    write_long_txt(wav_name=wav_name,cut_line=2000) ##对于不小心被识别到同一句中的我也只能说抱歉，只能skip
+    write_long_txt(wav_name=wav_name,cut_line=1000) ##对于不小心被识别到同一句中的我也只能说抱歉，只能skip
     print("开始合并处理后的句子")
     convert_short_txt_to_long(wav_name=wav_name) ## ./tmp/processed.txt
     print("忽略短句")

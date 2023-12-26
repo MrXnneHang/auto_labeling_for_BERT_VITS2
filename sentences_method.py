@@ -56,7 +56,7 @@ def seg_sentences(sentences,cutline):
                     print(f"拆分短句:{left_text}")
                     left_text=""
                 last_text=""
-                for n in range(cut_points[-1][1],len(sentence["text"])-1):
+                for n in range(cut_points[-1][1],-1):
                     last_text+=sentence["text_seg"][n*2]
             new_texts.append(last_text)
             print(f"拆分短句:{last_text}")
