@@ -17,7 +17,7 @@ def write_long_txt(wav_name,cut_line):
     lines = []
     for i in sentences: 
                 lines.append(str(i["ts_list"][0][0])+"|"+str(i["ts_list"][-1][-1])+"|"+i["text"])
-                print(str(i["ts_list"][0][0])+"|"+str(i["ts_list"][-1][-1])+"|"+i["text"])
+                print(str(i["ts_list"][0][0])+"|"+str(i["ts_list"][-1][1])+"|"+i["text"])
 
     write_lines_to_file(f'./tmp/{wav_name}.txt', lines)
 
