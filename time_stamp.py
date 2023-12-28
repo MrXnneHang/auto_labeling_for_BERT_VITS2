@@ -10,7 +10,7 @@ def write_long_txt(wav_name,cut_line):
         param_dict={'use_timestamp': True}
     )
     rec_result = inference_pipeline(audio_in=f'./raw_audio/{wav_name}.wav')
-    print(rec_result["sentences"])
+    #print(rec_result["sentences"])
     sentences = rec_result["sentences"]
     ## 判断是否删除 n+1的start -  n的end > cutline
     sentences = generate_new_sentences(sentences=sentences,cutline=cut_line)  ##这个会把一个句子中两句话分开，如果两句话的间隔超过cutline ,default =1000ms

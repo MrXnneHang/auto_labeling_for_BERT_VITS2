@@ -103,6 +103,19 @@ def generate_replacements(sentences,cutline):
             print(new_sentences)
             replacements.append((sentence_index,new_sentences))
     return replacements
+def generate_replacements_with_speaker(sentences,cutline):
+    new_texts_in_sentences,new_ts_list_in_sentences_,new_seg_text_in_sentences,all_cut_points_in_sentences = seg_sentences(sentences,cutline)
+    # 替换规则：(索引, 新子列表)
+    replacements = []
+    for sentence_index,cut_points in enumerate(all_cut_points_in_sentences):
+        if len(cut_points)!=0:
+            new_sentences = []
+            for i in range(len(cut_points)):
+                new_sentences.append({"text":new_texts_in_sentences[sentence_index][i],"ts_list":new_ts_list_in_sentences_[sentence_index][i],
+                                 "text_seg":new_seg_text_in_sentences[sentence_index][i],"spk":new})
+            print(new_sentences)
+            replacements.append((sentence_index,new_sentences))
+    return replacements
 
 def generate_new_sentences(sentences,cutline):
     replacements = generate_replacements(sentences=sentences,cutline=cutline)
