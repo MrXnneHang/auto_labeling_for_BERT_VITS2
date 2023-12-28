@@ -15,13 +15,17 @@ def determine_speaker(content_start, content_end, speaker_data):
         speaker_start = float(speaker_start)
         speaker_end = float(speaker_end)
 
+        ## 建议进行这个clip之前合并所有音频。虽然很大概率会爆显存，但是，我们每次见到的speaker index都是独立的，都不一定是同一个人。
+        ## 虽然我们可以写一个简单的算法把说话最多的那个人提取出来但不一定是说话人最多。所以尽量，merge it.
         # Calculate overlap
+        ## 这个0.9999999是确保所有音频都是同一个人讲的，而不是识别到一个两句对话被合并到一句.
         overlap = min(content_end, speaker_end) - max(content_start, speaker_start)
         if overlap > 0:
             overlap_duration += overlap
-            if overlap_duration / content_duration >= 0.6:
+            if overlap_duration / content_duration >= 0.7:
                 chosen_speaker = speaker
                 break
+        ## 这一步完成之后我们还应该做一个声音重叠的检测。
 
     return chosen_speaker
 def final_with_speaker(wav_name):
