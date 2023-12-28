@@ -28,6 +28,9 @@ Step 1. Run_clip.py 会按照Funasr的Time_stamp逐句squeeze掉没有说话的�
 step 2. 用MDX算法给process后变短的wav降噪,请参考b站领航员未鸟的一键包。|你也可以选择降噪后再进行这个处理，但是通常先删除无音频部分可以让降噪处理时间缩减到原本的四分之一。<br>
 Step 3. Run_cut.py  ./raw_audio/降噪后的wavs -> ./tmp/cut/*.wav，根据字幕切割后的音频,每个音频是一个完整长句.<br>
 Step 4. Run 10.带标点符号的标注 + 12.清理标注 .用未鸟的auto_labeling来给短音频写esd.list<br>
+## 场景一已经基本成熟可以进入测试阶段。
+---
+
 
 场景二:<br>
 Step 1. 初步清洗，删除过短的音频<br>
