@@ -60,8 +60,8 @@ def main():
     ## 清理list
     clean_list()
     ## autolabeling
-    os.system("python auto_DataLabeling_long.py")
-    os.system("python clean_list.py")
+    os.system("D:\\program\\auto_DataLabeling\\auto_DataLabeling\\10.带标点符号的标注.bat")
+    os.system("D:\\program\\auto_DataLabeling\\auto_DataLabeling\\12.清理用于Bert_VITS2的标注.bat")
     labeled_files = get_file_list("./raw_audio")
     ## clean dataset folder
     db_dataset_path = "./db/dataset/xishi/"
