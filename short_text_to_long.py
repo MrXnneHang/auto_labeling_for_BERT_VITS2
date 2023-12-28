@@ -4,7 +4,7 @@ def convert_short_txt_to_long(wav_name,merge_line=500):
     new_lines = []
     with open(f'./tmp/{wav_name}.txt', 'r', encoding='utf-8') as file:
         lines = file.readlines()
-    new_lines.append(lines[0])
+    new_lines.append(lines[0].replace("\n",""))
     latest_start = lines[0].split("|")[0]
     latest_end = lines[0].split("|")[1]
     latest_content = lines[0].split("|")[2].replace("\n","")
