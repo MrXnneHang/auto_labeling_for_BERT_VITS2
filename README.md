@@ -19,7 +19,8 @@
 #### 本身就是funasr的环境适配见：https://alibaba-damo-academy.github.io/FunASR/en/installation/installation.html
 ## 项目的说明:
 适用场景一：给游戏主播录屏(单人音频，大量空白)制作BERT-VITS制作数据集<br>
-适用场景二: 给已经切片好的galgame character wavs 制作BERT-VITS数据集<br>
+适用场景二:多人音频，如动漫人物配音提取（兴奋）。以及电台，连麦，视频电话。<br>
+适用场景三: 给已经切片好的galgame character wavs 制作BERT-VITS数据集<br>
 
 ## 用法:
 
@@ -30,9 +31,14 @@ Step 3. Run_cut.py  ./raw_audio/降噪后的wavs -> ./tmp/cut/*.wav，根据字�
 Step 4. Run 10.带标点符号的标注 + 12.清理标注 .用未鸟的auto_labeling来给短音频写esd.list<br>
 ## 场景一已经基本成熟可以进入测试阶段。
 ---
-
-
 场景二:<br>
+最常见的场景，多人音频，视频通话，电台，连麦，动漫对话（这个需要日文版本的模型，到时候可以先用国漫来测试）<br>
+会根据Pytannote的speaker id 来进行筛选。<br>
+这里会分出两种模式，一种适合一个人讲完换另一个人讲。60%原则，如果对话60%以上都在speaker的时间线中，就判定为那个speaker,否则就认为None.另一种模式是，讲话有很多重叠，我们要利用这个speaker的插入来清洗掉这些数据。<br>
+构建ing....
+---
+
+场景三:<br>
 Step 1. 初步清洗，删除过短的音频<br>
 Step 2. Whisper WebUI来获取*.txt,不需要Time_stamp<br>
 step 3. 合成txts成esd.list,txt中可能有几行，这里会把它们合并到同一行，然后在进行写入.<br>
