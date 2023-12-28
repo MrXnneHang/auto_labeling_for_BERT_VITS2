@@ -43,7 +43,7 @@ def main():
         ## cut前先清除所有之前的文件
         old_files = get_file_list("./tmp/cut")
         for old_file in old_files:
-            os.remove("./tmp/cut/"+cut_files)
+            os.remove("./tmp/cut/"+old_file)
         for i in tqdm(range(len(file_names))):
             if len(file_names[i].split("."))>2:
                 print("请不要在音频文件命名中输入多余的.")
