@@ -1,6 +1,7 @@
 from time_stamp import write_lines_to_file
 
-def convert_short_txt_to_long(wav_name,merge_line=500):
+
+def convert_short_txt_to_long(wav_name,merge_line=1000):
     new_lines = []
     with open(f'./tmp/{wav_name}.txt', 'r', encoding='utf-8') as file:
         lines = file.readlines()

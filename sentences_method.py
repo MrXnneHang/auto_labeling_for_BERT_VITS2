@@ -89,7 +89,16 @@ def replace_and_expand(lst, replacements):
         lst = lst[:adjusted_index] + new_sublist + lst[adjusted_index + 1:]
         offset += len(new_sublist) - 1
     return lst
-
+def get_start_end_content(line):
+    start = line.split("|")[0]
+    end = line.split("|")[1]
+    if len(line.split("|"))==4:
+        speaker = line.split("|")[2]
+        content = line.split("|")[3]
+        return start,end,speaker,content
+    else:
+        content = line.split("|")[2]
+        return start,end,content
 def generate_replacements(sentences,cutline):
     new_texts_in_sentences,new_ts_list_in_sentences_,new_seg_text_in_sentences,all_cut_points_in_sentences = seg_sentences(sentences,cutline)
     # 替换规则：(索引, 新子列表)
@@ -100,6 +109,19 @@ def generate_replacements(sentences,cutline):
             for i in range(len(cut_points)):
                 new_sentences.append({"text":new_texts_in_sentences[sentence_index][i],"ts_list":new_ts_list_in_sentences_[sentence_index][i],
                                  "text_seg":new_seg_text_in_sentences[sentence_index][i]})
+            print(new_sentences)
+            replacements.append((sentence_index,new_sentences))
+    return replacements
+def generate_replacements_with_speaker(sentences,cutline):
+    new_texts_in_sentences,new_ts_list_in_sentences_,new_seg_text_in_sentences,all_cut_points_in_sentences = seg_sentences(sentences,cutline)
+    # 替换规则：(索引, 新子列表)
+    replacements = []
+    for sentence_index,cut_points in enumerate(all_cut_points_in_sentences):
+        if len(cut_points)!=0:
+            new_sentences = []
+            for i in range(len(cut_points)):
+                new_sentences.append({"text":new_texts_in_sentences[sentence_index][i],"ts_list":new_ts_list_in_sentences_[sentence_index][i],
+                                 "text_seg":new_seg_text_in_sentences[sentence_index][i],"spk":new})
             print(new_sentences)
             replacements.append((sentence_index,new_sentences))
     return replacements
