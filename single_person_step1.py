@@ -34,11 +34,17 @@ def main():
     if ask == "y":
         print("开始处理")
         for i in tqdm(range(len(file_names))):
+            processed_file_names = os.listdir("./tmp/")
+            if "processed_"+file_names[i] in processed_file_names:
+                print("已经处理过了.skip-----")
+                continue
             if len(file_names[i].split("."))>2:
                 print("请不要在音频文件命名中输入多余的.")
                 return
+            print(f"processing {file_names[i]} --------------------------")
             clip(wav_name=file_names[i].split(".")[0])
             ## clip完成后删除掉这个wav
+        for i in tqdm(range(len(file_names))):
             os.remove("./raw_audio/"+file_names[i])
         print("All clips were done")
     ## 移动处理完后的processed音频到raw_audio下并且清空tmp
