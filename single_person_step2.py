@@ -4,6 +4,7 @@ from tqdm import tqdm
 from run_clip import clip 
 from run_cut import cut
 from merge_wav_by_list import merge_audio
+from loudness_norm import loudness_norm_file
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -69,8 +70,11 @@ def main():
     if old_files is not None:
         for i in old_files:
             os.remove(db_dataset_path+i)
-    for i in labeled_files:
-        shutil.move("./raw_audio/"+i,db_dataset_path+i)
+    print("开始响度匹配，输出的文件夹为./db/dateset-----------------")
+    for i in tqdm(labeled_files):
+        loudness_norm_file(input_file="./raw_audio/"+i,output_file=db_dataset_path+i)
+        os.remove("./raw_audio/"+i)
+        #shutil.move("./raw_audio/"+i,db_dataset_path+i)
     shutil.move("./clean_barbara.list","./db/esd.list")
     
     
