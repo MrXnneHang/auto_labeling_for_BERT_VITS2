@@ -2,21 +2,17 @@ from modelscope.pipelines import pipeline
 from modelscope.utils.constant import Tasks
 import os
 
-'''
-inference_pipeline = pipeline(
-    task=Tasks.auto_speech_recognition,
-    model='./Model/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-pytorch',
-)
-
-rec_result = inference_pipeline(audio_in='ge_1570_2.wav')
-print(rec_result)
-# {'text': '欢迎大家来体验达摩院推出的语音识别模型'}
-'''
+## 删除所有标注//因为标注实际上不会太耗时，相对于降噪.
+biaozhu = ["./long_character_anno.txt","./barbara.list","cleaned_barbara.list"]
+for i in biaozhu:
+    os.remove(i)
 
 parent_dir = "./raw_audio/"
 local_dir_model = "./Model/speech_paraformer-large-vad-punc_asr_nat-zh-cn-16k-common-vocab8404-pytorch"
 complete_list = []
 filelist = list(os.walk(parent_dir))[0][2]
+
+
 
 if os.path.exists('long_character_anno.txt'):
     with open("./long_character_anno.txt", 'r', encoding='utf-8') as f:
@@ -39,9 +35,6 @@ for file in filelist:
     character_name = file.rstrip(".wav").split("_")[0]
     savepth = "./dataset/" + character_name + "/" + file
 
-    if savepth in complete_list:
-        print(f'{file} is already done, skip!')
-        continue
 
     rec_result = inference_pipeline(audio_in=parent_dir + file)
 
