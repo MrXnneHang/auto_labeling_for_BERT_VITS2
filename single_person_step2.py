@@ -65,7 +65,7 @@ def main():
     os.system("D:\\program\\auto_DataLabeling\\auto_DataLabeling\\12.清理用于Bert_VITS2的标注.bat")
     labeled_files = get_file_list("./raw_audio")
     ## clean dataset folder
-    db_dataset_path = "./db/dataset/xishi/"
+    db_dataset_path = "./dataset/xishi/"
     old_files = get_file_list(db_dataset_path)
     if old_files is not None:
         for i in old_files:
@@ -75,7 +75,7 @@ def main():
         loudness_norm_file(input_file="./raw_audio/"+i,output_file=db_dataset_path+i)
         os.remove("./raw_audio/"+i)
         #shutil.move("./raw_audio/"+i,db_dataset_path+i)
-    shutil.move("./clean_barbara.list","./db/esd.list")
+    shutil.move("./clean_barbara.list","./esd.list")
     
     
 

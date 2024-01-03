@@ -3,6 +3,9 @@ import os
 from tqdm import tqdm
 
 def merge_audio(files, output_dir, silence_duration=2000, max_length=10*60*1000):
+    old_files = os.listdir("./merged_wav")
+    for i in old_files:
+        os.remove(f"./merged_wav/{i}")
     files = [file.split("|")[0] for file in files]
     silence = AudioSegment.silent(duration=silence_duration)
     combined = AudioSegment.empty()
@@ -18,5 +21,10 @@ def merge_audio(files, output_dir, silence_duration=2000, max_length=10*60*1000)
 
     if len(combined) > 0:
         combined.export(os.path.join(output_dir, f"output_{output_index}.wav"), format='wav')
+
+if __name__ == "__main__":
+    old_files = os.listdir("./merged_wav")
+    for i in old_files:
+        os.remove(f"./merged_wav/{i}")
 
 

@@ -5,7 +5,8 @@ import os
 ## 删除所有标注//因为标注实际上不会太耗时，相对于降噪.
 biaozhu = ["./long_character_anno.txt","./barbara.list","cleaned_barbara.list"]
 for i in biaozhu:
-    os.remove(i)
+    if os.path.exists(i):
+        os.remove(i)
 
 parent_dir = "./raw_audio/"
 local_dir_model = "./Model/speech_paraformer-large-vad-punc_asr_nat-zh-cn-16k-common-vocab8404-pytorch"

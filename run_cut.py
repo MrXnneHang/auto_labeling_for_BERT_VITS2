@@ -9,11 +9,15 @@ from ignore_short_sentences import ignore_short_sentence
 
 def cut(wav_name):
     print("开始语音识别")
-    write_long_txt(wav_name=wav_name,cut_line=1000) ##对于不小心被识别到同一句中的我也只能说抱歉，只能skip
+    write_long_txt(wav_name=wav_name,cut_line=1000) # 这里是对clip后的操作所以可以拉得长一些，我每一句之间加了1.5s的空白。
+    ## cut_line 越大，长句占比越多，原理根据短句时间的间隔，如果小于cut_line就把它们合并到一起。
+    ## 推荐值300(很多短句),1000(很多长句).不应该长于1500,会把所有连在一起，
+    ## 保持一致即可
     print("开始合并处理后的句子")
     convert_short_txt_to_long(wav_name=wav_name) ## ./tmp/processed.txt
     print("忽略短句")
     ignore_short_sentence(wav_name=wav_name,audio_length=2500)
+    ## 通用保持一致
     print("开始保存切片")
     with open(f"./tmp/final_{wav_name}.txt",'r',encoding="utf-8") as f:
         lines = f.readlines()

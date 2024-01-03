@@ -19,11 +19,16 @@ def clip(wav_name):
     如果设置deleshort=True,会自动跳过这些短音频，skip_line是跳过的阈值，单位ms
     """
     print("开始语音识别")
-    write_long_txt(wav_name=wav_name,cut_line=300)
+    write_long_txt(wav_name=wav_name,cut_line=1000)  ## cut line会把两个字间隔长于1000ms的分隔开来，建议根据实际情况调整，如果调整成1000ms(1s).会出现很多超级长句(20s以上)
+    ## 如果希望分割的句子短一些，建议300 or 500
+    ## 保持一致
+
     print("开始处理识别后的语句")
     convert_short_txt_to_long(wav_name=wav_name)
     print("忽略短句")
     ignore_short_sentence(wav_name=wav_name,audio_length=2500)
+    ## 这个audio_length会把所有短于2500ms的忽略掉，根据字幕。
+    ## 如果希望有短句，可以保留，把它设的小一点1000ms这样。
     print("开始合成最终的人声合集")
     clip_wav(wav_name=wav_name)
 

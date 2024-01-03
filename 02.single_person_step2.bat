@@ -1,3 +1,6 @@
-D:
-cd D:\program\auto_DataLabeling\auto_DataLabeling
-D:\miniconda\envs\audio\python.exe single_person_step2.py
+.\env\python.exe single_person_step2.py
+IF %ERRORLEVEL% NEQ 0 (
+    echo somthing got wrong。
+    PAUSE
+    exit /b %ERRORLEVEL%
+)

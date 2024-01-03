@@ -1,5 +1,6 @@
 from pathlib import Path
 from typing import Union
+from tqdm import tqdm
 
 import os
 import numpy as np
@@ -63,7 +64,7 @@ def loudness_norm_file(
 
 if __name__ == "__main__":
     file_names = os.listdir("./raw_audio")
-    for file_name in file_names:
+    for file_name in tqdm(file_names):
         input_path = os.path.abspath(f"./raw_audio/{file_name}")
         output_path = f"./tmp/{file_name}"
         loudness_norm_file(input_file=input_path, output_file=output_path)

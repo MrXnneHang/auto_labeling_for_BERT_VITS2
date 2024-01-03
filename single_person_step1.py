@@ -47,6 +47,8 @@ def main():
         for i in tqdm(range(len(file_names))):
             os.remove("./raw_audio/"+file_names[i])
         print("All clips were done")
+    else:
+        return
     ## 移动处理完后的processed音频到raw_audio下并且清空tmp
     tmp_files = clean_txt()
     for name in tmp_files:
