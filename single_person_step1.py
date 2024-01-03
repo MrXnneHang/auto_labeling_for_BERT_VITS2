@@ -54,32 +54,6 @@ def main():
     for name in tmp_files:
         if ".wav" in name:
             shutil.move("./tmp/"+name,"./raw_audio/"+name)
-    ## run_cut
-    cliped_files = get_file_list("./raw_audio")
-    for i in tqdm(range(len(cliped_files))):
-        cut(wav_name=cliped_files[i].split(".")[0])
-        os.remove("./raw_audio/"+cliped_files[i])
-    print("All cut were done")
-    cut_files = os.listdir("./tmp/cut")
-    for name in cut_files:
-        shutil.move("./tmp/cut/"+name,"./raw_audio/"+name)
-    ## 清理txt
-    clean_txt()
-    ## 清理list
-    clean_list()
-    os.system("D:\\program\\auto_DataLabeling\\auto_DataLabeling\\10.带标点符号的标注.bat")
-    os.system("D:\\program\\auto_DataLabeling\\auto_DataLabeling\\12.清理用于Bert_VITS2的标注.bat")
-    labeled_files = get_file_list("./raw_audio")
-    ## clean dataset folder
-    old_files = get_file_list("./dataset/processed")
-    if old_files is not None:
-        for i in old_files:
-            os.remove("./dataset/processed/"+i)
-    for i in labeled_files:
-        shutil.move("./raw_audio/"+i,"./dataset/processed/"+i)
-    with open("./clean_barbara.list","r",encoding="utf-8") as file:
-        lines = file.readlines()
-        merge_audio(lines,"./merged_wav")
     
     
 
