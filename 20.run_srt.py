@@ -2,7 +2,7 @@ from time_stamp import write_long_txt ## 带有时间戳的语音识别
 from short_text_to_long import convert_short_txt_to_long  ## 合并那些原本是同义句但是被拆分成多句的句子，同时也合并他们的时间线
 import os
 from tqdm import tqdm
-from txt_to_srt import convert_to_srt
+from utils.txt_to_srt import convert_to_srt
 """
 
 """
