@@ -44,16 +44,16 @@ def main():
             print(f"processing {file_names[i]} --------------------------")
             clip(wav_name=file_names[i].split(".")[0])
         ## clip完成后删除掉这个wav  //因为正在开发，一个视频需要多次对比，所以并不删除，投入使用的时候可以考虑把for循环的注释删掉。
-        #for i in tqdm(range(len(file_names))):
-        #    os.remove("./raw_audio/"+file_names[i])
+        for i in tqdm(range(len(file_names))):
+            os.remove("./raw_audio/"+file_names[i])
         print("All clips were done")
     else:
         return
     ## 移动处理完后的processed音频到raw_audio下并且清空tmp   //同理，暂时保留tmp下的文件，作为对比，以及，只是覆盖。
-    ## tmp_files = clean_txt()
-    ## for name in tmp_files:
-    ##  if ".wav" in name:
-    ##        shutil.move("./tmp/"+name,"./raw_audio/"+name)
+    tmp_files = clean_txt()
+    for name in tmp_files:
+      if ".wav" in name:
+            shutil.move("./tmp/"+name,"./raw_audio/"+name)
     
     
 
