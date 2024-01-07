@@ -1,10 +1,11 @@
-from time_stamp import write_long_txt ## 带有时间戳的语音识别
-from short_text_to_long import convert_short_txt_to_long  ## 合并那些原本是同义句但是被拆分成多句的句子，同时也合并他们的时间线
-from clip import clip_wav ## 根据新的时间线来切割我们的wav，去掉所有的空白音频
 import os
+
 from tqdm import tqdm
-from cut import cut_wav
-from ignore_short_sentences import ignore_short_sentence
+from utils.time_stamp import write_long_txt ## 带有时间戳的语音识别
+from utils.short_text_to_long import convert_short_txt_to_long  ## 合并那些原本是同义句但是被拆分成多句的句子，同时也合并他们的时间线
+from utils.clip import clip_wav ## 根据新的时间线来切割我们的wav，去掉所有的空白音频
+from utils.cut import cut_wav
+from utils.ignore_short_sentences import ignore_short_sentence
 
 
 def cut(wav_name):

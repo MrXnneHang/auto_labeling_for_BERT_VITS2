@@ -1,6 +1,6 @@
 from modelscope.pipelines import pipeline
 from modelscope.utils.constant import Tasks
-from sentences_method import generate_new_sentences
+from .sentences_method import generate_new_sentences
 
 
 def write_long_txt(wav_name,cut_line):

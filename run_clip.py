@@ -1,9 +1,10 @@
-from time_stamp import write_long_txt ## 带有时间戳的语音识别
-from short_text_to_long import convert_short_txt_to_long  ## 合并那些原本是同义句但是被拆分成多句的句子，同时也合并他们的时间线
-from clip import clip_wav ## 根据新的时间线来切割我们的wav，去掉所有的空白音频
 import os
 from tqdm import tqdm
-from ignore_short_sentences import ignore_short_sentence
+
+from utils.time_stamp import write_long_txt ## 带有时间戳的语音识别
+from utils.short_text_to_long import convert_short_txt_to_long  ## 合并那些原本是同义句但是被拆分成多句的句子，同时也合并他们的时间线
+from utils.clip import clip_wav ## 根据新的时间线来切割我们的wav，去掉所有的空白音频
+from utils.ignore_short_sentences import ignore_short_sentence
 
 """这个最终做的是什么,
    1.生成语音字幕和time_stamp,写入第一个txt

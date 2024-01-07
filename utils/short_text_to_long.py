@@ -1,4 +1,4 @@
-from time_stamp import write_lines_to_file
+from .time_stamp import write_lines_to_file
 
 
 def convert_short_txt_to_long(wav_name,merge_line=1000):

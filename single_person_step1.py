@@ -3,7 +3,7 @@ import shutil
 from tqdm import tqdm
 from run_clip import clip 
 from run_cut import cut
-from merge_wav_by_list import merge_audio
+from utils.merge_wav_by_list import merge_audio
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 

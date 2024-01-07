@@ -1,10 +1,10 @@
 import os
 import shutil
 from tqdm import tqdm
-from run_clip import clip 
+from run_clip import clip
 from run_cut import cut
-from merge_wav_by_list import merge_audio
-from loudness_norm import loudness_norm_file
+from utils.merge_wav_by_list import merge_audio
+from utils.loudness_norm import loudness_norm_file
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 

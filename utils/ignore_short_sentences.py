@@ -1,4 +1,4 @@
-from time_stamp import write_lines_to_file
+from .time_stamp import write_lines_to_file
 
 def ignore_short_sentence(wav_name,audio_length):
     new_lines = []
