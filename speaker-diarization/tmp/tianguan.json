@@ -1,0 +1,98 @@
+{
+  "tianguan_16k_0.2_1.82": {
+    "file": "examples/tianguan_16k.wav",
+    "start": 0.2,
+    "stop": 1.82,
+    "sample_rate": 16000
+  },
+  "tianguan_16k_2.1_7.66": {
+    "file": "examples/tianguan_16k.wav",
+    "start": 2.1,
+    "stop": 7.66,
+    "sample_rate": 16000
+  },
+  "tianguan_16k_7.94_13.48": {
+    "file": "examples/tianguan_16k.wav",
+    "start": 7.94,
+    "stop": 13.48,
+    "sample_rate": 16000
+  },
+  "tianguan_16k_14.02_16.63": {
+    "file": "examples/tianguan_16k.wav",
+    "start": 14.02,
+    "stop": 16.63,
+    "sample_rate": 16000
+  },
+  "tianguan_16k_17.01_19.71": {
+    "file": "examples/tianguan_16k.wav",
+    "start": 17.01,
+    "stop": 19.71,
+    "sample_rate": 16000
+  },
+  "tianguan_16k_20.8_22.49": {
+    "file": "examples/tianguan_16k.wav",
+    "start": 20.8,
+    "stop": 22.49,
+    "sample_rate": 16000
+  },
+  "tianguan_16k_23.52_26.28": {
+    "file": "examples/tianguan_16k.wav",
+    "start": 23.52,
+    "stop": 26.28,
+    "sample_rate": 16000
+  },
+  "tianguan_16k_27.44_28.24": {
+    "file": "examples/tianguan_16k.wav",
+    "start": 27.44,
+    "stop": 28.24,
+    "sample_rate": 16000
+  },
+  "tianguan_16k_28.52_29.74": {
+    "file": "examples/tianguan_16k.wav",
+    "start": 28.52,
+    "stop": 29.74,
+    "sample_rate": 16000
+  },
+  "tianguan_16k_31.67_33.43": {
+    "file": "examples/tianguan_16k.wav",
+    "start": 31.67,
+    "stop": 33.43,
+    "sample_rate": 16000
+  },
+  "tianguan_16k_33.78_36.34": {
+    "file": "examples/tianguan_16k.wav",
+    "start": 33.78,
+    "stop": 36.34,
+    "sample_rate": 16000
+  },
+  "tianguan_16k_36.62_38.11": {
+    "file": "examples/tianguan_16k.wav",
+    "start": 36.62,
+    "stop": 38.11,
+    "sample_rate": 16000
+  },
+  "tianguan_16k_38.39_39.07": {
+    "file": "examples/tianguan_16k.wav",
+    "start": 38.39,
+    "stop": 39.07,
+    "sample_rate": 16000
+  },
+  "tianguan_16k_45.76_49.88": {
+    "file": "examples/tianguan_16k.wav",
+    "start": 45.76,
+    "stop": 49.88,
+    "sample_rate": 16000
+  },
+  "tianguan_16k_50.16_52.02": {
+    "file": "examples/tianguan_16k.wav",
+    "start": 50.16,
+    "stop": 52.02,
+    "sample_rate": 16000
+  },
+  "tianguan_16k_55.4_56.82": {
+    "file": "examples/tianguan_16k.wav",
+    "start": 55.4,
+    "stop": 56.82,
+    "sample_rate": 16000
+  }
+}
