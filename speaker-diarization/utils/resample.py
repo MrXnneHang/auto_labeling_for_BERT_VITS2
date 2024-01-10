@@ -24,7 +24,7 @@ def resample_wav(input_path):
 
 def main():
     parser = argparse.ArgumentParser(description="将WAV单通道音频文件重新采样为16000Hz")
-    parser.add_argument("input_path", type=str, help="输入的WAV文件路径")
+    parser.add_argument("-i","--input_path", type=str, help="输入的WAV文件路径")
 
     args = parser.parse_args()
     resample_wav(args.input_path)
