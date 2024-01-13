@@ -34,24 +34,24 @@
 ## 用法:
 
 场景一：<br>
-Step 1. single_person_step1.py/bat .会识别字幕并且按照时间线来裁剪掉没有说话的片段，每个音频片段之间保留1.5s空白。
-Step 2. single_person_step2.py/bat  会将音频片段按照字幕切片，每个片段是一个完整断句或者长句，可以根据一些参数来控制断句，长句比例和长度。
-参数讲解：https://www.bilibili.com/opus/885554048063766563?spm_id_from=333.999.0.0
-如果连接丢了，可能是我更新了一下。可以在我的主页专栏里找：https://space.bilibili.com/556737824
-## 场景一已经基本成熟可以进入测试阶段。
+Step 1. single_person_step1.py/bat .会识别字幕并且按照时间线来裁剪掉没有说话的片段，每个音频片段之间保留1.5s空白。<br>
+Step 2. single_person_step2.py/bat  会将音频片段按照字幕切片，每个片段是一个完整断句或者长句，可以根据一些参数来控制断句，长句比例和长度。<br>
+参数讲解：https://www.bilibili.com/opus/885554048063766563?spm_id_from=333.999.0.0<br>
+如果连接丢了，可能是我更新了一下。可以在我的主页专栏里找：https://space.bilibili.com/556737824<br>
+## 场景一已经基本成熟可以进入测试阶段。<br>
 ---
 
 场景二:<br>
 
-我打算更改策略.
+我打算更改策略.<br>
 
-step1.根据说话人活动检测。并且切片，得到不带说话单人标签的短音频。
+step1.根据说话人活动检测。并且切片，得到不带说话单人标签的短音频。<br>
 
-目前借助3d-speaker可以进行片段分割，暂时只支持中文，日文效果很差。
-如果在windows下运行，可以参照/speaker-diaration/combine.sh来写一个.bat然后运行，后续我也会补档一下windows.
-待处理的音频放在/speaker-diaration/examples/下，需要自行新建。具体可以参阅/speaker-diaration/local和/speaker-diaration/utils下的代码。
+目前借助3d-speaker可以进行片段分割，暂时只支持中文，日文效果很差。<br>
+如果在windows下运行，可以参照/speaker-diaration/combine.sh来写一个.bat然后运行，后续我也会补档一下windows.<br>
+待处理的音频放在/speaker-diaration/examples/下，需要自行新建。具体可以参阅/speaker-diaration/local和/speaker-diaration/utils下的代码。<br>
 
-参考原项目:(https://github.com/alibaba-damo-academy/3D-speaker)
+参考原项目:(https://github.com/alibaba-damo-academy/3D-speaker)<br>
 ---
 
 场景三:<br>
