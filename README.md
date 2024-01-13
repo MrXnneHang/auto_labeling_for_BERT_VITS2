@@ -47,7 +47,7 @@ Step 2. single_person_step2.py/bat  会将音频片段按照字幕切片，每�
 
 step1.根据说话人活动检测。并且切片，得到不带说话单人标签的短音频。<br>
 
-目前借助3d-speaker可以进行片段分割，暂时只支持中文，日文效果很差。<br>
+目前借助3d-speaker生成的rttm文件进行片段分割，因为模型原因,暂时只支持中文，日文效果很差。<br>
 如果在windows下运行，可以参照/speaker-diaration/combine.sh来写一个.bat然后运行，后续我也会补档一下windows.<br>
 待处理的音频放在/speaker-diaration/examples/下，需要自行新建。具体可以参阅/speaker-diaration/local和/speaker-diaration/utils下的代码。<br>
 
