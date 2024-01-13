@@ -34,10 +34,10 @@
 ## 用法:
 
 场景一：<br>
-Step 1. Run_clip.py 会按照Funasr的Time_stamp逐句squeeze掉没有说话的音频,而且也会删除音频过短的部分，默认2500ms,可以自行调整 <br>
-step 2. 用MDX算法给process后变短的wav降噪,请参考b站领航员未鸟的一键包。|你也可以选择降噪后再进行这个处理，但是通常先删除无音频部分可以让降噪处理时间缩减到原本的四分之一。<br>
-Step 3. Run_cut.py  ./raw_audio/降噪后的wavs -> ./tmp/cut/*.wav，根据字幕切割后的音频,每个音频是一个完整长句.<br>
-Step 4. Run 10.带标点符号的标注 + 12.清理标注 .用未鸟的auto_labeling来给短音频写esd.list<br>
+Step 1. single_person_step1.py/bat .会识别字幕并且按照时间线来裁剪掉没有说话的片段，每个音频片段之间保留1.5s空白。
+Step 2. single_person_step2.py/bat  会将音频片段按照字幕切片，每个片段是一个完整断句或者长句，可以根据一些参数来控制断句，长句比例和长度。
+参数讲解：https://www.bilibili.com/opus/885554048063766563?spm_id_from=333.999.0.0
+如果连接丢了，可能是我更新了一下。可以在我的主页专栏里找：https://space.bilibili.com/556737824
 ## 场景一已经基本成熟可以进入测试阶段。
 ---
 
@@ -47,8 +47,11 @@ Step 4. Run 10.带标点符号的标注 + 12.清理标注 .用未鸟的auto_labe
 
 step1.根据说话人活动检测。并且切片，得到不带说话单人标签的短音频。
 
+目前借助3d-speaker可以进行片段分割，暂时只支持中文，日文效果很差。
+如果在windows下运行，可以参照/speaker-diaration/combine.sh来写一个.bat然后运行，后续我也会补档一下windows.
+待处理的音频放在/speaker-diaration/examples/下，需要自行新建。具体可以参阅/speaker-diaration/local和/speaker-diaration/utils下的代码。
 
-构建ing....
+参考原项目:(https://github.com/alibaba-damo-academy/3D-speaker)
 ---
 
 场景三:<br>
