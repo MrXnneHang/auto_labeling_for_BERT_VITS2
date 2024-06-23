@@ -43,9 +43,11 @@ def clean_txt(clean=True):
 
 
 def clean_list():
-    files = get_file_list("./")
+    if not os.path.isdir("./tmp/dataset_list"):
+        os.mkdir("./tmp/dataset_list")
+    files = get_file_list("./tmp/dataset_list")
     for i in files:
         if "barbara" in i:
-            os.remove("./"+i)
+            os.remove("./tmp/dataset_list/"+i)
         if "long_character_anno" in i:
-            os.remove("./"+i)
+            os.remove("./tmp/dataset_list/"+i)
