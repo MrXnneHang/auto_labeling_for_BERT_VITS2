@@ -32,6 +32,12 @@ pip install -U funasr
 
 
 
+## 使用介绍:
+
+[ADL使用介绍](http://xnnehang.top/blog/28)
+
+如果进不去，可能是我家断网了，或者我在折腾SSL证书。
+
 ### 后续:
 
 **1.添加对日语和英语的模型兼容选项**
