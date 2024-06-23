@@ -39,7 +39,6 @@ def cut(wav_name):
 
 def main():
     config = load_config()
-    db_dir = config["db_dir"]
 
     # ----------------------------------------------------------------
     # 切片
