@@ -6,7 +6,7 @@
 
 顺便简化了以前的实现逻辑，以前的代码，wtf。
 
-python环境的改变:
+相对旧版python环境的改变:
 
 ```
 pip install -U funasr
