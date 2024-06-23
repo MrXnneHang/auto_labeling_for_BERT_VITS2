@@ -100,7 +100,7 @@ def main():
     for i in tqdm(labeled_files):
         loudness_norm_file(input_file="./raw_audio/"+i,output_file=db_dataset_path+i)
         os.remove("./raw_audio/"+i)
-    shutil.copy("./clean_barbara.list","./esd.list")
+    shutil.copy("./tmp/dataset_list/clean_barbara.list","./esd.list")
 
 
 if __name__ == "__main__":

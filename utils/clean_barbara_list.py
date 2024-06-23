@@ -5,8 +5,8 @@ if __name__ == "__main__":
     new_annos = []
     cleaned_new_annos = []
 
-    if os.path.exists("./barbara.list"):
-        with open("./barbara.list", 'r', encoding='utf-8') as f:
+    if os.path.exists("./tmp/dataset_list/barbara.list"):
+        with open("./tmp/dataset_list/barbara.list", 'r', encoding='utf-8') as f:
             long_character_anno = f.readlines()
             new_annos += long_character_anno
     else:
@@ -27,7 +27,7 @@ if __name__ == "__main__":
             print(f'skip too short wav : {text}')
 
 
-    with open("./clean_barbara.list", 'w', encoding='utf-8') as f:
+    with open("./tmp/dataset_list/clean_barbara.list", 'w', encoding='utf-8') as f:
         for line in cleaned_new_annos:
             f.write(line)
 
