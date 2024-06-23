@@ -8,7 +8,13 @@
 
 python环境的改变:
 
+```
 pip install -U funasr
+```
+
+---
+
+
 
 ## 2024/6/23:
 
@@ -21,6 +27,8 @@ pip install -U funasr
 **2.对手动精修清洗数据集webui进行了迁移.**
 
 **3.合并了多个一键运行到rundesk.bat.**
+
+---
 
 
 
