@@ -1,5 +1,0 @@
-numba==0.56.2
-umap-learn
-funasr
-modelscope
-hdbscan
