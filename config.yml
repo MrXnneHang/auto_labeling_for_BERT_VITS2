@@ -1,7 +1,5 @@
 device: "cuda:0"  # 如果没有Nvidia显卡就填"cpu"
-db_dir: "./dataset/sishu/" # 手动清理标注的存放位置，改成和你long_charater_anno中一样的文件夹
-                           # 比如./dataset/sishu/sishu_0_8.wav 就填 ./dataset/sishu/
-                           # 另外请不要忽略掉charater_name后面的/
+
 ## 单位是毫秒
 cut_line: 1000  # 如果一个句子中，有两个字的间隔超过1000毫秒，以此把句子切成两句，防止长句过长
 combine_line: 500 # 如果两个字的间隔小于400毫秒，就把它们合并到一句，可以增加连贯性，同时合并一些语气词。
