@@ -11,6 +11,7 @@ class FunASRModel:
         self.base_model = self.config["base_model"]
         self.vad_model = self.config["vad_model"]
         self.punc_model = self.config["punc_model"]
+        self.spk_model = self.config["spk_model"]
         self.device = self.config["device"]
 
     def full_version(self):
@@ -24,9 +25,13 @@ class FunASRModel:
         return funasr_model
 
     def only_vad(self):
-        model = AutoModel(model=self.vad_model, #
-                          device = self.device)
+        model = AutoModel(model=self.vad_model,
+                          device=self.device)
+        return model
 
+    def only_spk(self):
+        model = AutoModel(model=self.spk_model,
+                          device=self.device)
         return model
 
 
