@@ -4,9 +4,11 @@ from tqdm import tqdm
 
 
 def clip_wav(wav_name):
-    # 读取文本文件并解析时间戳
+    """
+    根据起始点和终止点来去掉空白（没有人声）的音频片段。
+    """
     timestamps = []
-    with open(f'./tmp/final_{wav_name}.txt', 'r', encoding='utf-8') as file:
+    with open(f'./tmp/processed_{wav_name}.txt', 'r', encoding='utf-8') as file:
         for line in file:
             match = re.match(r'(\d+)\|(\d+)\|', line)
             if match:

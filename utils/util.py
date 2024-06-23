@@ -33,11 +33,12 @@ def get_file_list(dir):
     return file_names
 
 
-def clean_txt():
+def clean_txt(clean=True):
     tmp_files = os.listdir("./tmp")
-    for name in tmp_files:
-        if ".txt" in name:
-            os.remove("./tmp/"+name)
+    if clean:
+        for name in tmp_files:
+            if ".txt" in name:
+                os.remove("./tmp/"+name)
     return tmp_files
 
 
