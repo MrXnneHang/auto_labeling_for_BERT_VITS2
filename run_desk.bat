@@ -29,12 +29,6 @@ if "%input%"=="1" (
     cd .\env\Scripts
     echo 请在新打开的页面进行环境配置
     start cmd
-) else if "%input%"=="esr" (
-    start D:\program\RealESR-GAN
-) else if "%input%"=="desk" (
-    start D:\program
-) else if "%input%"=="label" (
-    start D:\program\auto_DataLabeling
 ) else (
     echo 未找到匹配项
 )
