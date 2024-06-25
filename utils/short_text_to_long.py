@@ -1,5 +1,11 @@
 from utils.time_stamp import write_lines_to_file
-
+"""
+根据./tmp/wavname.txt里面的
+354|2680|
+2740|3440|
+来合并距离过短的两个相邻句子。
+似乎只能处理一次合并，如果一次合并后还有这种情况就需要二次运行了。
+"""
 def convert_short_txt_to_long(wav_name,combine_line):
     latest_start = 0
     latest_end = 0
