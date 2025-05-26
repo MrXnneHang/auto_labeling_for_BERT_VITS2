@@ -1,0 +1,11 @@
+device = "cuda:0"  # 如果没有Nvidia显卡就填"cpu"
+
+## 单位是毫秒
+cut_line = 1000  # 如果一个句子中，有两个字的间隔超过1000毫秒，以此把句子切成两句，防止长句过长
+combine_line = 500 # 如果两个字的间隔小于400毫秒，就把它们合并到一句，可以增加连贯性，同时合并一些语气词。
+ignore_line = 1500 # 如果句子长度短语2.5s，就把它丢弃。
+## 对于不同的任务我们不一定需要全部用上。
+base_model = "./models/speech_seaco_paraformer_large_asr_nat-zh-cn-16k-common-vocab8404-pytorch"  # base
+vad_model = "./models/speech_fsmn_vad_zh-cn-16k-common-pytorch" # 检测语音活动，自动分隔
+punc_model = "./models/punc_ct-transformer_zh-cn-common-vocab272727-pytorch"  # 标点恢复。
+spk_model = "./models/speech_campplus_sv_zh-cn_16k-common"
