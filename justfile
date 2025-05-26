@@ -9,7 +9,7 @@ dev-clean:
   rm packages/wexpect-uv/dist -rf
 
 server:
-  uv run uvicorn src.lab.api_server:app --reload --host localhost --port 8000
+  uv run uvicorn src.label.api_server:app --reload --host localhost --port 8000
 
 test-server:
   curl -X POST "http://localhost:8000/rec-audio" -F "file=@./examples/example3.opus"

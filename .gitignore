@@ -4,3 +4,6 @@ dataset
 
 tmp
 __pycache__
+
+raw_audio/
+output/

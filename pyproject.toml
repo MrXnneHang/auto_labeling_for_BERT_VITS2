@@ -16,6 +16,7 @@ dependencies = [
     "streamlit==1.43.2",
     "streamlit-antd-components==0.3.2",
     "pandas==2.2.3",
+    "pydub>=0.25.1",
 ]
 authors = [{ name = "MrXnneHang", email = "XnneHang@gmail.com" }]
 keywords = []
@@ -23,11 +24,7 @@ license = { text = "MIT" }
 
 
 [project.scripts]
-test = "lab.test:main"
-acgo = "lab.__main__:main"
-get_root = "lab.utils.get_root:main" # 获取项目所在根目录绝对路径, 防止 streamlit UI 中默认以 `.` 作为根目录而找不到一些文件.
-tmp = "lab.tmp:main" # debug 时随意写的一些脚本
-debug = "lab.debug:main"
+label = "label.__main__:main"
 
 [dependency-groups]
 dev = [
@@ -62,7 +59,7 @@ torchaudio = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/lab","packages/todo/src/todo","packages/yutto-uiya/src/uiya"]
+packages = ["src/label"]
 
 [build-system]
 requires = ["hatchling"]
