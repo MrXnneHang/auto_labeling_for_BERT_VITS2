@@ -2,10 +2,12 @@ from __future__ import annotations
 
 from typing import Literal
 
-from lab.utils.console.colorful import no_colored_string
+from label.console.colorful import no_colored_string
 
 
-def size_format(size: float, ndigits: int = 2, base_unit_size: Literal[1024, 1000] = 1024) -> str:
+def size_format(
+    size: float, ndigits: int = 2, base_unit_size: Literal[1024, 1000] = 1024
+) -> str:
     """输入数据字节数，与保留小数位数，返回数据量字符串"""
     sign = "-" if size < 0 else ""
     size = abs(size)
@@ -21,7 +23,9 @@ def size_format(size: float, ndigits: int = 2, base_unit_size: Literal[1024, 100
             index += 1
         else:
             break
-    return "{}{:.{}f} {}".format(sign, size / base_unit_size**index, ndigits, unit_list[index])
+    return "{}{:.{}f} {}".format(
+        sign, size / base_unit_size**index, ndigits, unit_list[index]
+    )
 
 
 def get_char_width(char: str) -> int:

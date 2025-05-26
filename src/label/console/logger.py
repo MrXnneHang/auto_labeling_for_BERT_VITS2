@@ -3,9 +3,9 @@ from __future__ import annotations
 import json
 from typing import Any
 
-from lab.utils.console.colorful import Color, Style, colored_string
-from lab.utils.console.formatter import get_string_width
-from lab.utils.console.status_bar import StatusBar
+from label.console.colorful import Color, Style, colored_string
+from label.console.formatter import get_string_width
+from label.console.status_bar import StatusBar
 
 _logger_debug: bool = False
 
@@ -29,7 +29,9 @@ class Badge:
         self.style: list[Style] | None = style
 
     def __str__(self):
-        return colored_string(f" {self.text} ", fore=self.fore, back=self.back, style=self.style)
+        return colored_string(
+            f" {self.text} ", fore=self.fore, back=self.back, style=self.style
+        )
 
     def __repr__(self):
         return str(self)
@@ -100,11 +102,16 @@ class Logger:
         Logger.custom(string, DEBUG_BADGE, *print_args, **print_kwargs)
 
     @classmethod
-    def custom_multiline(cls, string: Any, badge: Badge, *print_args: Any, **print_kwargs: Any):
+    def custom_multiline(
+        cls, string: Any, badge: Badge, *print_args: Any, **print_kwargs: Any
+    ):
         prefix = badge + " "
         lines = string.split("\n")
         multiline_string = prefix + "\n".join(
-            [((" " * get_string_width(prefix)) if i != 0 else "") + line for i, line in enumerate(lines)]
+            [
+                ((" " * get_string_width(prefix)) if i != 0 else "") + line
+                for i, line in enumerate(lines)
+            ]
         )
         print(multiline_string, *print_args, **print_kwargs)
 
@@ -121,7 +128,9 @@ class Logger:
         Logger.custom_multiline(string, INFO_BADGE, *print_args, **print_kwargs)
 
     @classmethod
-    def deprecated_warning_multiline(cls, string: Any, *print_args: Any, **print_kwargs: Any):
+    def deprecated_warning_multiline(
+        cls, string: Any, *print_args: Any, **print_kwargs: Any
+    ):
         Logger.custom_multiline(string, DEPRECATED_BADGE, *print_args, **print_kwargs)
 
     @classmethod
@@ -136,7 +145,9 @@ class Logger:
         print(string, *print_args, **print_kwargs)
 
     @classmethod
-    def json(cls, obj: list[Any] | dict[str, Any], *print_args: Any, **print_kwargs: Any):
+    def json(
+        cls, obj: list[Any] | dict[str, Any], *print_args: Any, **print_kwargs: Any
+    ):
         Logger.print(json.dumps(obj, indent=2), *print_args, **print_kwargs)
 
     @classmethod

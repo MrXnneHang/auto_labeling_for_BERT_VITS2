@@ -100,7 +100,10 @@ code_map: CodeMap = {
 
 
 def colored_string(
-    string: str, fore: Color | None = None, back: Color | None = None, style: list[Style] | None = None
+    string: str,
+    fore: Color | None = None,
+    back: Color | None = None,
+    style: list[Style] | None = None,
 ) -> str:
     if _no_color:
         return string

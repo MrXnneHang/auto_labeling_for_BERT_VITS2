@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from lab.utils.console.formatter import get_string_width
+from label.console.formatter import get_string_width
 
 
 class StatusBar:
