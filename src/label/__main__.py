@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from label._dataclass import RunnerSettings
+from label.clipper import main as clipper
 from label.utils.config import load_settings_file
 
 
@@ -9,4 +10,4 @@ def main():
         setting_name="config.toml",
         setting=RunnerSettings,
     )
-    print(settings)
+    clipper()

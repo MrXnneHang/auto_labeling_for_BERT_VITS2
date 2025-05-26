@@ -12,7 +12,7 @@ class RunnerSettings(BaseModel):
     device: Annotated[Literal["cpu", "cuda"], Field("cpu", title="设备选择")]
     punctuation_list: Annotated[str, Field("，。；、？！,.;?!")]
     custom_output_dir: Annotated[bool, Field(False, title="自定义输出目录")]
-
+    raw_audio_dir: Annotated[str, Field("./raw_audio", title="原始音频路径")]
     cache_dir: Annotated[str, Field("./cache", title="缓存路径")]
     output_dir: Annotated[str, Field("./output", title="输出路径")]
     hot_words_path: Annotated[str, Field("./hot_words.txt", title="热词路径")]
@@ -33,13 +33,6 @@ class RunnerSettings(BaseModel):
         Field(
             "./models/punc_ct-transformer_zh-cn-common-vocab272727-pytorch",
             title="punc 模型",
-        ),
-    ]
-    sense_voice_model: Annotated[
-        str,
-        Field(
-            "./models/SenseVoiceSmall",
-            title="sense_voice 模型",
         ),
     ]
 

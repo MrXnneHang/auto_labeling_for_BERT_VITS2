@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from label.BasicRunner.converter import rewrite_sentence_text_by_words
+from label.basic_runner.converter import rewrite_sentence_text_by_words
 
 if TYPE_CHECKING:
     from label._typing import CutPoint, Sentence, Word
