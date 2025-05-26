@@ -1,0 +1,77 @@
+[project]
+name = "XnneHangLab"
+version = "0.0.5"
+description = ""
+readme = "README.md"
+requires-python = ">=3.11,<3.12"
+dependencies = [
+    "funasr==1.2.6",
+    "modelscope>=1.23.1",
+    "numpy==1.26.4",
+    "torch==2.2.0",
+    "torchaudio==2.2.0",
+    "tomli_w==1.2.0",
+    "pydantic>=2.10.6",
+    "setuptools==76.0.0",
+    "streamlit==1.43.2",
+    "streamlit-antd-components==0.3.2",
+    "pandas==2.2.3",
+]
+authors = [{ name = "MrXnneHang", email = "XnneHang@gmail.com" }]
+keywords = []
+license = { text = "MIT" }
+
+
+[project.scripts]
+test = "lab.test:main"
+acgo = "lab.__main__:main"
+get_root = "lab.utils.get_root:main" # 获取项目所在根目录绝对路径, 防止 streamlit UI 中默认以 `.` 作为根目录而找不到一些文件.
+tmp = "lab.tmp:main" # debug 时随意写的一些脚本
+debug = "lab.debug:main"
+
+[dependency-groups]
+dev = [
+  "pyright>=1.1.391",
+  "ruff>=0.9.3",
+  "pytest>=8.3.4",
+  "pytest-rerunfailures>=15.0",
+]
+
+
+[tool.uv.workspace]
+members = ["packages/yutto-uiya","packages/todo/"]
+
+[[tool.uv.index]]
+name = "pytorch-cu118"
+url = "https://download.pytorch.org/whl/cu118"
+explicit = true
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[tool.uv.sources]
+torch = [
+  { index = "pytorch-cu118", marker = "sys_platform == 'win32'" }, # sys_platform : 'win32' , 'linux' , 'Darwin'
+  { index = "pytorch-cpu", marker = "sys_platform != 'win32'"}
+]
+torchaudio = [
+  { index = "pytorch-cu118", marker = "sys_platform == 'win32'" },
+  { index = "pytorch-cpu", marker = "sys_platform != 'win32'"}
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/lab","packages/todo/src/todo","packages/yutto-uiya/src/uiya"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+# 选取的该版本 Pytorch 仅仅支持 310 311.
+# < 3.11 需要额外安装 tomlilib 
+# < 3.11 不支持 *tuple 的解包。(_dataclass.py 中涉及)
+# 于是，该项目只能在 3.11 运行，3.12 及以上需要考虑手动升级 pytorch。
+
+# 因为本项目主体是用于 UI, 为了防止响应时间过长所以不少地方用到了 lazy-import 来处理 torch, funasr, pandas 等复杂库. 这些库导入在计算力比较低的库上几乎需要四五秒乃至更久的时间.
+# 如果你需要用于批处理, 或者要求响应速度比较快的, 那么可以考虑优化这些 lazy-import 的地方, 所有 lazy-import 均有用 `# Lazy-import` 标注, 你可以快速搜索.
