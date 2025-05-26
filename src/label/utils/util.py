@@ -30,11 +30,19 @@ def load_config():
         return config
 
 
-def get_file_list(dir):
-    file_names = os.listdir(dir)
-    if "desktop.ini" in file_names:
-        file_names.remove("desktop.ini")
-    return file_names
+def get_file_list(dir_path: str | Path) -> list[Path]:
+    """
+    获取指定目录下的文件和文件夹列表，返回 Path 对象的列表。
+
+    Args:
+        dir_path (str | Path): 目录路径，可以是字符串或 Path 对象。
+
+    Returns:
+        List[Path]: 目录下文件和文件夹的 Path 对象列表，排除 'desktop.ini'。
+    """
+    path = Path(dir_path)
+    file_list = [item for item in path.iterdir() if item.name != "desktop.ini"]
+    return file_list
 
 
 def clean_esd_wav():
