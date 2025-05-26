@@ -115,12 +115,12 @@ def main():
 
     # run clip
     if ask == "y":
-        print("开始处理")
-        for file_path in tqdm(file_paths):
+        Logger.info("开始处理")
+        for file_path in file_paths:
             print(f"processing {file_path} --------------------------")
             run_clip(file_path=file_path)
         # clip完成后删除掉这个wav  //因为正在开发，一个视频需要多次对比，所以并不删除，投入使用的时候可以考虑把for循环的注释删掉。
-        print("All clips were done")
+        Logger.info("All clips were done")
     else:
         return
 
