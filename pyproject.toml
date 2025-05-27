@@ -17,6 +17,7 @@ dependencies = [
     "streamlit-antd-components==0.3.2",
     "pandas==2.2.3",
     "pydub>=0.25.1",
+    "pyloudnorm>=0.1.1",
 ]
 authors = [{ name = "MrXnneHang", email = "XnneHang@gmail.com" }]
 keywords = []
@@ -24,7 +25,8 @@ license = { text = "MIT" }
 
 
 [project.scripts]
-label = "label.__main__:main"
+clip = "label.clipper:main"
+cut = "label.cutter:main"
 
 [dependency-groups]
 dev = [
