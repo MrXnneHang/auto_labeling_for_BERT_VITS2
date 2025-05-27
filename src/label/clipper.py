@@ -13,6 +13,7 @@ from label.console.logger import Logger
 from label.utils.clip import clip_wav
 from label.utils.config import load_settings_file, write_settings_file
 from label.utils.ffmpeg_helper import file_to_wav
+from label.utils.ignore_sentences import ignore_long_sentences, ignore_short_sentences
 from label.utils.model import FunASRModel, generate_asr_results
 from label.utils.util import show_sentences_length
 
@@ -40,7 +41,7 @@ def run_clip(file_path: Path):
     while True:
         show_sentences_length(sentences=sentences)
         ask = input(
-            "是否直接切片合并? 1: 继续, 2: cut_sentence, 3: combine_sentence, 4: exit:"
+            "是否进入下一步? 1: 继续, 2: cut_sentence, 3: combine_sentence, 4: exit:"
         )
         if ask == "1":
             write_settings_file(
@@ -49,14 +50,18 @@ def run_clip(file_path: Path):
             )
             break
         elif ask == "2":
-            sentences = convert_asr_response_to_sentences(response) # 每次都从原始 response 转换, 为了能在 cut 复现
-            ask = input("你希望的 cut_line 是? (int)毫秒")
-            cut_sentences(sentences=sentences, cut_line=int(ask))
+            sentences = convert_asr_response_to_sentences(
+                response
+            )  # 每次都从原始 response 转换, 为了能在 cut 复现
+            ask = input("你希望的 cut_line 2是? (int)毫秒")
+            sentences = cut_sentences(sentences=sentences, cut_line=int(ask))
             config.cut = True
             config.combine = False
             config.cut_line = int(ask)
         elif ask == "3":
-            sentences = convert_asr_response_to_sentences(response)  # 每次都从原始 response 转换, 为了能在 combine 复现
+            sentences = convert_asr_response_to_sentences(
+                response
+            )  # 每次都从原始 response 转换, 为了能在 combine 复现
             ask_1 = input("你希望的 combine_line 是? (int)毫秒")
             ask_2 = input("你希望的 max_sentence_length 是? (int)个字")
             sentences = combine_sentences(
@@ -71,6 +76,32 @@ def run_clip(file_path: Path):
         elif ask == "4":
             Logger.info("退出程序")
             sys.exit()
+    while True:
+        show_sentences_length(sentences=sentences)
+        ask1 = input(
+            "是否直接开始切片?(1) 或者要忽略过短的句子?(2) 或者忽略过长的句子?(3):"
+        )
+        match ask1:
+            case "1":
+                break
+            case "2":
+                ask2 = input("你希望忽略的小于(int)毫秒的句子:")
+                if not ask2.isdigit():
+                    Logger.warning("请输入整数")
+                    continue
+                sentences = ignore_short_sentences(
+                    sentences=sentences, min_length=int(ask2)
+                )
+            case "3":
+                ask2 = input("你希望忽略长于(int)毫秒的片段:")
+                if not ask2.isdigit():
+                    Logger.warning("请输入整数")
+                    continue
+                sentences = ignore_long_sentences(
+                    sentences=sentences, max_length=int(ask2)
+                )
+            case _:
+                Logger.warning("无效输入")
 
     output_dir = Path(config.output_dir)
     if not output_dir.exists():
@@ -80,11 +111,13 @@ def run_clip(file_path: Path):
         file_path.unlink()  # 删除原始文件, 只保留wav格式的文件
         file_path = file_path.with_suffix(".wav")
     Logger.info(f"{len(sentences)} sentences to clip")
+    output_path = output_dir / "clip" / f"{file_path.stem}_clip.wav" 
     clip_wav(
         sentences=sentences,
         input_path=file_path,
-        output_path=output_dir / "clip" / f"{file_path.stem}_clip.wav",
+        output_path=output_path,
     )
+    shutil.copy("config/config.toml",output_path.with_suffix(".toml"))  # 保存配置文件到输出目录, 在 cut 的时候复用
 
 
 def main():
