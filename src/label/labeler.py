@@ -2,11 +2,12 @@ import os
 import sys
 from pathlib import Path
 
-from label.utils.model import FunASRModel, generate_asr_results
-from label.utils.util import  read_hot_words
-from label.utils.config import load_settings_file
 from label._dataclass import RunnerSettings
 from label.console.logger import Logger
+from label.utils.config import load_settings_file
+from label.utils.model import FunASRModel, generate_asr_results
+from label.utils.util import read_hot_words
+
 
 def main():
     config = load_settings_file("config.toml", RunnerSettings)
@@ -22,7 +23,6 @@ def main():
         label_path = Path(label_path)
         if label_path.exists():
             label_path.unlink()
-
 
     input_dir = Path(config.output_dir) / "cut"
     # global parent_dir, 读取所有音频文件
