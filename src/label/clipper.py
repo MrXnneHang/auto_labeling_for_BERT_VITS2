@@ -49,12 +49,14 @@ def run_clip(file_path: Path):
             )
             break
         elif ask == "2":
+            sentences = convert_asr_response_to_sentences(response) # 每次都从原始 response 转换, 为了能在 cut 复现
             ask = input("你希望的 cut_line 是? (int)毫秒")
             cut_sentences(sentences=sentences, cut_line=int(ask))
             config.cut = True
             config.combine = False
             config.cut_line = int(ask)
         elif ask == "3":
+            sentences = convert_asr_response_to_sentences(response)  # 每次都从原始 response 转换, 为了能在 combine 复现
             ask_1 = input("你希望的 combine_line 是? (int)毫秒")
             ask_2 = input("你希望的 max_sentence_length 是? (int)个字")
             sentences = combine_sentences(
