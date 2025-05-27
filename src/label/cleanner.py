@@ -1,12 +1,12 @@
-import os
+from pathlib import Path
 import re
 
-if __name__ == "__main__":
+def main():
     new_annos = []
     cleaned_new_annos = []
-
-    if os.path.exists("./tmp/dataset_list/barbara.list"):
-        with open("./tmp/dataset_list/barbara.list", "r", encoding="utf-8") as f:
+    esd_path = Path("./esd.list")
+    if esd_path.exists():
+        with esd_path.open("r", encoding="utf-8") as f:
             long_character_anno = f.readlines()
             new_annos += long_character_anno
     else:
