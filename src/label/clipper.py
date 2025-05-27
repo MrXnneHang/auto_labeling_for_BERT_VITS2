@@ -87,9 +87,9 @@ def run_clip(file_path: Path):
 
 def main():
     # 待处理的所有文件
-    settings = load_settings_file("config.toml", RunnerSettings)
-    print(Path(settings.raw_audio_dir).absolute())
-    file_paths = [item for item in Path(settings.raw_audio_dir).iterdir()]
+    config = load_settings_file("config.toml", RunnerSettings)
+    print(Path(config.raw_audio_dir).absolute())
+    file_paths = [item for item in Path(config.raw_audio_dir).iterdir()]
     Logger.info(f"raw_audio:{file_paths}")
     support_formats = ["wav", "mp3", "opus", "m4a"]
 

@@ -75,8 +75,8 @@ def cut(input_path: Path):
 
 def main():
     # 待处理的所有文件
-    settings = load_settings_file("config.toml", RunnerSettings)
-    file_paths = [p for p in (Path(settings.output_dir) / "clip").iterdir()]
+    config = load_settings_file("config.toml", RunnerSettings)
+    file_paths = [p for p in (Path(config.output_dir) / "clip").iterdir()]
     Logger.info(f"raw_audio:{file_paths}")
     support_formats = ["wav", "mp3", "opus", "m4a"]
 
