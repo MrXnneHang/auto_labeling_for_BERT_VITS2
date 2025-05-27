@@ -7,3 +7,5 @@ __pycache__
 
 raw_audio/
 output/
+long_character_anno.txt
+esd.list
