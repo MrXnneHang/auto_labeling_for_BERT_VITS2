@@ -34,7 +34,7 @@ def clip_wav(
             segment = audio[
                 sentence["start"] - extend_length : sentence["end"] + extend_length
             ]
-        processed_audio += AudioSegment.silent(duration=2000)  # 添加1.5秒空白
+        processed_audio += AudioSegment.silent(duration=1500)  # 添加1.5秒空白
         processed_audio += segment
 
     # 保存新的音频文件
