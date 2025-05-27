@@ -26,7 +26,10 @@ def cut(input_path: Path):
     根据新的起始点和终止点进行cut
     """
     config_path = input_path.with_suffix(".toml")
-    shutil.copy(config_path,"config/config.toml")
+    if config_path.exists():
+        shutil.copy(config_path,"config/config.toml")
+    else:
+        pass # 如果没有配置文件，可能是从别处下载来的, 那么直接用默认配置
 
     config = load_settings_file("config.toml", RunnerSettings)
     Model = FunASRModel()
