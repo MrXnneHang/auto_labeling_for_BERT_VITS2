@@ -17,6 +17,17 @@ class FunASRModel:
         self.punc_model: str = str(self.settings.punc_model)
         self.device: str = self.settings.device
 
+    def full_asr(self):
+        # asr_and_vad_and_punc
+        model = AutoModel(
+            model=self.base_model,  # base
+            vad_model=self.vad_model,  # 检测语音活动，自动分隔
+            punc_model=self.punc_model,  # 添加标点符号
+            device=self.device,
+            disable_update=True,  # 添加在这里，禁用更新检查
+        )
+        return model
+
     def vad_and_asr(self):
         model = AutoModel(
             model=self.base_model,  # base
