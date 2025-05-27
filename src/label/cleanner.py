@@ -1,5 +1,6 @@
-from pathlib import Path
 import re
+from pathlib import Path
+
 
 def main():
     new_annos = []
@@ -26,7 +27,7 @@ def main():
         else:
             print(f"skip too short wav : {text}")
 
-    with open("./tmp/dataset_list/clean_barbara.list", "w", encoding="utf-8") as f:
+    with esd_path.open("w", encoding="utf-8") as f:
         for line in cleaned_new_annos:
             f.write(line)
 
