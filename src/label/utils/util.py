@@ -1,12 +1,22 @@
+from __future__ import annotations
+
 import os
 from pathlib import Path
+from typing import TYPE_CHECKING
 
 import numpy as np
 import yaml
 
+from label.console.logger import Logger
+
+if TYPE_CHECKING:
+    from label._typing import Sentence
+
 
 def read_hot_words():
-    with open("./hot_words.txt", "r", encoding="utf-8") as f:
+    if not Path("./hot_words.txt").exists():
+        return ""
+    with Path("./hot_words.txt").open("r", encoding="utf-8") as f:
         lines = f.readlines()
     hot_words = ""
     for line in lines:
@@ -30,38 +40,23 @@ def load_config():
         return config
 
 
-def get_file_list(dir_path: str | Path) -> list[Path]:
-    """
-    获取指定目录下的文件和文件夹列表，返回 Path 对象的列表。
-
-    Args:
-        dir_path (str | Path): 目录路径，可以是字符串或 Path 对象。
-
-    Returns:
-        List[Path]: 目录下文件和文件夹的 Path 对象列表，排除 'desktop.ini'。
-    """
-    path = Path(dir_path)
-    file_list = [item for item in path.iterdir() if item.name != "desktop.ini"]
-    return file_list
-
-
-def clean_esd_wav():
-    """
-    根据清理完后的esd文件把已经被删掉的音频（在操作中被删掉的音频）进行清理。
-    其实正常使用可以不删除，因为在数据集清理之后，esd就不会再引用被删除掉的音频。
-    但是我为了留下一些混合speaker和单独speaker的数据集，我特地利用清理数据集删掉了大部分正常数据集。
-    留下部分不正常数据集和正常数据集，这样我就可以进行一个speaker清洗的调参。
-    """
-    with open("./esd.list", "r", encoding="utf-8") as f:
-        lines = f.readlines()
-    file_list = [line.split("|")[0] for line in lines]
-    sample_file = file_list[0]
-    file_name_list = [str(Path(file).name) for file in file_list]
-    parent = Path(sample_file).parent
-    dir_list = get_file_list(str(parent))
-    for file_name in dir_list:
-        if file_name not in file_name_list:
-            os.remove(str(parent / file_name))
+# def clean_esd_wav():
+#     """
+#     根据清理完后的esd文件把已经被删掉的音频（在操作中被删掉的音频）进行清理。
+#     其实正常使用可以不删除，因为在数据集清理之后，esd就不会再引用被删除掉的音频。
+#     但是我为了留下一些混合speaker和单独speaker的数据集，我特地利用清理数据集删掉了大部分正常数据集。
+#     留下部分不正常数据集和正常数据集，这样我就可以进行一个speaker清洗的调参。
+#     """
+#     with open("./esd.list", "r", encoding="utf-8") as f:
+#         lines = f.readlines()
+#     file_list = [line.split("|")[0] for line in lines]
+#     sample_file = file_list[0]
+#     file_name_list = [str(Path(file).name) for file in file_list]
+#     parent = Path(sample_file).parent
+#     dir_list = []
+#     for file_name in dir_list:
+#         if file_name not in file_name_list:
+#             os.remove(str(parent / file_name))
 
 
 def clean_txt(clean=True):
@@ -73,38 +68,31 @@ def clean_txt(clean=True):
     return tmp_files
 
 
-def clean_list():
-    if not os.path.isdir("./tmp/dataset_list"):
-        os.mkdir("./tmp/dataset_list")
-    files = get_file_list("./tmp/dataset_list")
-    for i in files:
-        if "barbara" in i:
-            os.remove("./tmp/dataset_list/" + i)
-        if "long_character_anno" in i:
-            os.remove("./tmp/dataset_list/" + i)
+def show_sentences_length(sentences: list[Sentence]):
+    duration_list = []
+    for sentence in sentences:
+        start = sentence["start"]
+        end = sentence["end"]
+        duration = (end - start) / 1000  # 转换为秒
+        duration_list.append(duration)
+    total_count = len(duration_list)
+    Logger.info(f"音频段数: {total_count}")
+    Logger.info(f"最短音频长: {min(duration_list)}, 最长音频长: {max(duration_list)}")
+    if total_count > 0:
+        under_2s = sum(1 for d in duration_list if d < 2)
+        between_2_5s = sum(1 for d in duration_list if 2 <= d < 5)
+        between_5_10s = sum(1 for d in duration_list if 5 <= d < 10)
+        over_10s = sum(1 for d in duration_list if d >= 10)
 
-
-def save_spk_tensors_to_yaml(tensor_list, file_list, filename):
-    # 将张量列表转换为普通的 Python 列表
-    tensor_data = [tensor.tolist() for tensor in tensor_list]
-
-    # 创建一个字典来保存张量数据和文件名
-    data = {"tensors": tensor_data, "file_names": file_list}
-
-    # 将字典转换为 YAML 格式并保存到文件中
-    with open(filename, "w") as file:
-        yaml.dump(data, file, default_flow_style=False)
-
-    print(f"Data saved to {filename}")
-
-
-def read_spk_tensors_from_yaml(filename):
-    # 从 YAML 文件中读取数据
-    with open(filename, "r") as file:
-        data = yaml.load(file, Loader=yaml.FullLoader)
-
-    # 将数据转换为 NumPy 数组，并保留文件名
-    tensor_list = [np.array(tensor) for tensor in data["tensors"]]
-    file_list = data["file_names"]
-
-    return tensor_list, file_list
+        Logger.info(
+            f"  < 2s   : {under_2s / total_count * 100:.1f}% ({under_2s} items)"
+        )
+        Logger.info(
+            f"  2-5s   : {between_2_5s / total_count * 100:.1f}% ({between_2_5s} items)"
+        )
+        Logger.info(
+            f"  5-10s  : {between_5_10s / total_count * 100:.1f}% ({between_5_10s} items)"
+        )
+        Logger.info(
+            f"  > 10s  : {over_10s / total_count * 100:.1f}% ({over_10s} items)"
+        )
